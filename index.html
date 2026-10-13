@@ -1,0 +1,563 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Madheena Chicken | Pattambi</title>
+<meta name="description" content="Madheena Chicken at Pattambi Fish Market. Fresh chicken, meat and bulk order enquiries.">
+<style>
+:root {
+  --green:#003b29;
+  --deep:#00291e;
+  --yellow:#ffd21c;
+  --cream:#f5f4e9;
+  --white:#fff;
+  --muted:#c4d4ca;
+}
+* { box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body {
+  margin:0;
+  font-family:Arial,Helvetica,sans-serif;
+  background:var(--cream);
+  color:#12251d;
+}
+a { color:inherit;text-decoration:none; }
+button,input,select { font:inherit; }
+button { cursor:pointer; }
+.container { width:min(1180px,92%);margin:auto; }
+.topline {
+  background:#001e16;color:#fff;
+  text-align:center;padding:8px;
+  font-size:12px;
+}
+header {
+  background:var(--green);color:white;
+  position:sticky;top:0;z-index:20;
+  box-shadow:0 4px 20px #0002;
+}
+.nav {
+  min-height:76px;display:flex;
+  align-items:center;justify-content:space-between;gap:15px;
+}
+.brand { display:flex;align-items:center;gap:10px;font-weight:900; }
+.brand-icon {
+  display:grid;place-items:center;
+  background:var(--yellow);color:var(--green);
+  width:50px;height:50px;border-radius:50%;font-size:27px;
+}
+.brand-name { font-size:21px;line-height:1.05; }
+.brand-name span { color:var(--yellow); }
+.brand small { display:block;font-size:10px;margin-top:5px;letter-spacing:1px; }
+.navlinks { display:flex;gap:22px;align-items:center;font-size:13px;font-weight:bold; }
+.navlinks a:hover { color:var(--yellow); }
+.nav-actions { display:flex;gap:8px;align-items:center; }
+.icon-btn {
+  border:1px solid #ffffff38;background:transparent;
+  color:white;border-radius:9px;padding:10px;
+}
+.menu-panel {
+  display:none;background:var(--deep);
+  padding:12px 4% 18px;
+}
+.menu-panel.open { display:block; }
+.menu-panel a { display:block;padding:12px 0;border-bottom:1px solid #ffffff22; }
+.menu-help { text-align:center;color:var(--yellow);font-size:11px;padding-top:14px; }
+
+.hero {
+  color:white;
+  background:
+  linear-gradient(90deg,#00170ff2 0%,#00170fbd 40%,#00170f25 100%),
+  url("https://images.unsplash.com/photo-1607623814075-e51df1bdc82f?auto=format&fit=crop&w=1800&q=90")
+  center 45%/cover;
+}
+.hero-inner {
+  min-height:350px;padding:55px 0;
+  display:flex;align-items:center;
+}
+.hero-copy { max-width:570px; }
+.eyebrow {
+  color:var(--yellow);font-weight:bold;
+  letter-spacing:2px;font-size:12px;
+}
+.hero h1 { font-size:clamp(40px,6vw,67px);line-height:1.02;margin:18px 0; }
+.hero h1 span { color:var(--yellow); }
+.hero p { line-height:1.7; }
+.btn {
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  border:0;border-radius:10px;padding:12px 17px;
+  font-size:13px;font-weight:bold;transition:.2s;
+}
+.btn:hover { transform:translateY(-2px);filter:brightness(1.04); }
+.yellow { background:var(--yellow);color:#14271d; }
+.green { background:var(--green);color:white; }
+.outline { background:transparent;border:1px solid #fff;color:white; }
+.feature-strip { background:#fff; }
+.features {
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:10px;padding:18px 0;
+}
+.feature {
+  display:flex;align-items:center;gap:12px;
+  padding:10px;border-right:1px solid #ddd;
+}
+.feature:last-child { border:0; }
+.feature-icon {
+  width:44px;height:44px;flex-shrink:0;border-radius:50%;
+  display:grid;place-items:center;background:var(--green);
+  color:white;font-size:21px;
+}
+.feature strong { display:block;font-size:13px; }
+.feature small { display:block;margin-top:5px;font-size:11px;color:#65736b; }
+
+section { padding:45px 0; }
+.products-section { background:var(--green);color:white; }
+.section-top {
+  display:flex;justify-content:space-between;align-items:end;
+  gap:20px;margin-bottom:22px;
+}
+.tag {
+  display:inline-block;border-radius:30px;padding:6px 12px;
+  background:var(--yellow);color:#14271d;font-weight:900;font-size:11px;
+}
+h2 { margin:10px 0;font-size:clamp(25px,3vw,34px); }
+.section-sub { color:var(--muted);font-size:13px;line-height:1.6; }
+.search {
+  width:min(380px,100%);border:0;border-radius:30px;
+  padding:14px 18px;outline:none;background:#fff;
+}
+.product-grid {
+  display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:17px;
+}
+.product {
+  color:#14251d;background:#fff;border-radius:12px;
+  overflow:hidden;box-shadow:0 5px 15px #001a1020;
+  transition:transform .25s,box-shadow .25s;
+  animation:fadeUp .65s both;
+}
+.product:hover { transform:translateY(-6px);box-shadow:0 15px 28px #00170f45; }
+.product-image-wrap { height:170px;overflow:hidden;background:#e4e5d8; }
+.product img {
+  width:100%;height:100%;display:block;object-fit:cover;
+  transition:transform .4s;
+}
+.product:hover img { transform:scale(1.06); }
+.product-content { padding:13px; }
+.product h3 { font-size:15px;margin:0 0 5px; }
+.malayalam { font-size:13px;color:#53645a; }
+.price { font-size:12px;font-weight:bold;color:var(--green);margin:12px 0; }
+.unavailable { color:#c52222; }
+.product-buttons { display:flex;gap:7px; }
+.product-buttons .btn { flex:1;padding:10px 5px;font-size:11px; }
+.light-btn { background:#e8eee8;color:var(--green); }
+.product-buttons button:disabled { background:#ddd;color:#777;cursor:not-allowed; }
+.product-buttons button:disabled:hover { transform:none; }
+
+.detail-panel {
+  display:none;margin-top:24px;padding:18px;
+  background:var(--cream);color:#15271e;
+  border-radius:16px;grid-template-columns:1fr 1fr;gap:20px;
+}
+.detail-panel.open { display:grid;animation:fadeUp .3s ease both; }
+.detail-panel img { width:100%;height:280px;object-fit:cover;border-radius:12px; }
+.detail-panel p { line-height:1.7;font-size:14px; }
+.close-detail { float:right;border:0;border-radius:8px;padding:8px 12px; }
+
+.bulk-card {
+  display:grid;grid-template-columns:35% 1fr;
+  background:var(--deep);color:white;
+  border-radius:20px;overflow:hidden;
+}
+.bulk-card img { width:100%;height:100%;min-height:255px;object-fit:cover; }
+.bulk-copy { padding:28px;align-self:center; }
+.bulk-copy p { color:#e2eae4;line-height:1.7;font-size:14px; }
+.bulk-copy h2 { margin:10px 0; }
+
+.info-grid { display:grid;grid-template-columns:1fr 1fr 1fr;gap:15px; }
+.info-card { background:white;border-radius:15px;padding:20px; }
+.info-card h3 { color:var(--green);margin-top:0; }
+.info-card p { font-size:13px;line-height:1.7; }
+.map { width:100%;height:190px;border:0;border-radius:10px; }
+footer { background:var(--deep);color:white;padding:28px 0; }
+.footer-row {
+  display:flex;justify-content:space-between;align-items:center;
+  gap:20px;flex-wrap:wrap;
+}
+footer small { color:#c6d6cd;line-height:1.8; }
+footer a:hover { color:var(--yellow); }
+
+.cart-panel {
+  display:none;position:fixed;right:18px;top:95px;
+  z-index:50;width:min(390px,calc(100% - 36px));
+  max-height:75vh;overflow:auto;background:white;
+  padding:20px;border-radius:16px;box-shadow:0 10px 45px #0005;
+}
+.cart-panel.open { display:block;animation:fadeUp .25s ease; }
+.cart-row {
+  display:flex;justify-content:space-between;gap:10px;
+  padding:12px 0;border-bottom:1px solid #e5e5e5;font-size:13px;
+}
+.cart-row button { border:0;border-radius:6px;padding:6px; }
+.cart-count {
+  display:inline-grid;place-items:center;min-width:18px;height:18px;
+  border-radius:50%;background:var(--yellow);color:#17251e;font-size:10px;
+}
+.toast {
+  position:fixed;z-index:60;left:50%;bottom:24px;
+  transform:translate(-50%,15px);opacity:0;pointer-events:none;
+  padding:13px 18px;background:var(--deep);color:white;
+  border-radius:10px;font-size:13px;transition:.25s;
+  max-width:90%;text-align:center;
+}
+.toast.show { opacity:1;transform:translate(-50%,0); }
+.floating-whatsapp {
+  position:fixed;right:18px;bottom:18px;z-index:30;
+  width:52px;height:52px;border-radius:50%;
+  display:grid;place-items:center;background:#20c76a;
+  color:white;font-size:24px;box-shadow:0 5px 18px #0003;
+  animation:breathe 2s infinite;
+}
+@keyframes fadeUp {
+  from { opacity:0;transform:translateY(18px); }
+  to { opacity:1;transform:translateY(0); }
+}
+@keyframes breathe {
+  0%,100% { box-shadow:0 0 0 0 #20c76a55; }
+  50% { box-shadow:0 0 0 9px #20c76a00; }
+}
+@media(max-width:900px) {
+  .navlinks { display:none; }
+  .product-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .features { grid-template-columns:repeat(2,1fr); }
+  .feature:nth-child(2) { border-right:0; }
+  .info-grid { grid-template-columns:1fr 1fr; }
+  .info-card:last-child { grid-column:1/-1; }
+}
+@media(max-width:560px) {
+  .brand-name { font-size:17px; }
+  .brand-icon { width:42px;height:42px; }
+  .nav { min-height:65px; }
+  .hero-inner { min-height:330px;padding:40px 0; }
+  .hero h1 { font-size:43px; }
+  .features { gap:4px; }
+  .feature { padding:7px 3px;gap:7px; }
+  .feature-icon { width:35px;height:35px;font-size:17px; }
+  .feature strong { font-size:11px; }
+  .feature small { font-size:10px; }
+  section { padding:32px 0; }
+  .section-top { align-items:stretch;flex-direction:column; }
+  .search { width:100%; }
+  .product-grid { gap:10px; }
+  .product-image-wrap { height:125px; }
+  .product-content { padding:10px; }
+  .product h3 { font-size:13px; }
+  .malayalam { font-size:12px; }
+  .product-buttons { flex-direction:column; }
+  .detail-panel.open { grid-template-columns:1fr; }
+  .detail-panel img { height:210px; }
+  .bulk-card { grid-template-columns:1fr; }
+  .bulk-card img { height:200px;min-height:0; }
+  .bulk-copy { padding:20px; }
+  .info-grid { grid-template-columns:1fr; }
+  .info-card:last-child { grid-column:auto; }
+}
+</style>
+</head>
+<body>
+
+<div class="topline">FREE DELIVERY WITHIN 4 KM · SHOP: 7736224403</div>
+
+<header>
+  <div class="container nav">
+    <a class="brand" href="#home">
+      <span class="brand-icon">🐓</span>
+      <span class="brand-name">MADHEENA<br><span>CHICKEN</span><small>FRESH · QUALITY · TRUST</small></span>
+    </a>
+    <nav class="navlinks">
+      <a href="#home">Home</a><a href="#products">Meats</a>
+      <a href="#bulk">Bulk Orders</a><a href="#location">Location</a>
+      <a href="#jobs">Jobs</a>
+    </nav>
+    <div class="nav-actions">
+      <button class="icon-btn" id="cartToggle" aria-label="Open cart">🛒 <span class="cart-count" id="cartCount">0</span></button>
+      <button class="icon-btn" id="menuToggle" aria-label="Open menu">☰</button>
+    </div>
+  </div>
+  <nav class="menu-panel" id="menuPanel">
+    <a href="#home">Home</a><a href="#products">Meats</a>
+    <a href="#bulk">Bulk Orders</a><a href="#location">Location</a>
+    <a href="#jobs">Jobs</a><a href="https://wa.me/917736224403">Contact Shop</a>
+    <div class="menu-help">Website Help: 6282495976</div>
+  </nav>
+</header>
+
+<main>
+<section class="hero" id="home">
+  <div class="container hero-inner">
+    <div class="hero-copy">
+      <div class="eyebrow">FRESH CHICKEN · PATTAMBI</div>
+      <h1>Madheena<br><span>Chicken</span></h1>
+      <p>Fresh Chicken | Fresh Meat | Better Service</p>
+      <p>📍 Pattambi Fish Market, Pattambi</p>
+      <a class="btn yellow" href="#products">Shop Now →</a>
+      <a class="btn outline" href="https://wa.me/917736224403" target="_blank" rel="noopener">WhatsApp Us</a>
+    </div>
+  </div>
+</section>
+
+<div class="feature-strip">
+  <div class="container features">
+    <div class="feature"><span class="feature-icon">✓</span><div><strong>Fresh & Hygienic</strong><small>Clean & Safe Meat</small></div></div>
+    <div class="feature"><span class="feature-icon">🐓</span><div><strong>Wide Variety</strong><small>Different Poultry Types</small></div></div>
+    <div class="feature"><span class="feature-icon">🛵</span><div><strong>4 km Free Delivery</strong><small>Within 4 km</small></div></div>
+    <div class="feature"><span class="feature-icon">★</span><div><strong>Trusted Shop</strong><small>Customer Satisfaction</small></div></div>
+  </div>
+</div>
+
+<section class="products-section" id="products">
+  <div class="container">
+    <div class="section-top">
+      <div><span class="tag">Meats</span><h2>Fresh Poultry Meats</h2>
+      <div class="section-sub">Meats availability and prices must be confirmed with the shop.</div></div>
+      <input class="search" id="search" type="search" placeholder="Search products...">
+    </div>
+
+    <div class="product-grid" id="productGrid">
+
+      <article class="product" data-name="country chicken നാടൻ കോഴി">
+        <div class="product-image-wrap"><img loading="lazy" src="https://images.unsplash.com/photo-1548550023-2bdb3c5beed7?auto=format&fit=crop&w=700&q=85" alt="Country chicken" onerror="this.onerror=null;this.src='https://placehold.co/700x450/e5e5d5/003b29?text=Country+Chicken'"></div>
+        <div class="product-content"><h3>Country Chicken</h3><div class="malayalam">നാടൻ കോഴി</div><div class="price">Price on enquiry</div><div class="product-buttons"><button class="btn green details-btn" data-id="country">Details</button><button class="btn yellow add-btn" data-id="country">🛒 Add to Cart</button></div></div>
+      </article>
+
+      <article class="product" data-name="broiler chicken ബ്രോയിലർ ചിക്കൻ">
+        <div class="product-image-wrap"><img loading="lazy" src="image/WhatsApp Image 2026-10-13 at 12.03.35 PM.jpeg" alt="Broiler chicken" onerror="this.onerror=null;this.src='https://placehold.co/700x450/e5e5d5/003b29?text=Broiler+Chicken'"></div>
+        <div class="product-content"><h3>Broiler Chicken</h3><div class="malayalam">ബ്രോയിലർ ചിക്കൻ</div><div class="price">Price on enquiry</div><div class="product-buttons"><button class="btn green details-btn" data-id="broiler">Details</button><button class="btn yellow add-btn" data-id="broiler">🛒 Add to Cart</button></div></div>
+      </article>
+
+      <article class="product" data-name="spring chicken സ്പ്രിങ് ചിക്കൻ">
+        <div class="product-image-wrap"><img loading="lazy" src="image/spring.jpeg" alt="Spring chicken" onerror="this.onerror=null;this.src='https://placehold.co/700x450/e5e5d5/003b29?text=Spring+Chicken'"></div>
+        <div class="product-content"><h3>Spring Chicken</h3><div class="malayalam">സ്പ്രിങ് ചിക്കൻ</div><div class="price">Price on enquiry</div><div class="product-buttons"><button class="btn green details-btn" data-id="spring">Details</button><button class="btn yellow add-btn" data-id="spring">🛒 Add to Cart</button></div></div>
+      </article>
+
+      <article class="product" data-name="layer chicken ലെയർ കോഴി">
+        <div class="product-image-wrap"><img loading="lazy" src="image/leghorn.jpeg" alt="Layer chicken" onerror="this.onerror=null;this.src='https://placehold.co/700x450/e5e5d5/003b29?text=Layer+Chicken'"></div>
+        <div class="product-content"><h3>Laghorn Chicken</h3><div class="malayalam">മുട്ട കോഴി</div><div class="price">Price on enquiry</div><div class="product-buttons"><button class="btn green details-btn" data-id="layer">Details</button><button class="btn yellow add-btn" data-id="layer">🛒 Add to Cart</button></div></div>
+      </article>
+
+      <article class="product" data-name="chicken meat ചിക്കൻ മീറ്റ്">
+        <div class="product-image-wrap"><img loading="lazy" src="https://images.unsplash.com/photo-1604503468506-a8da13d82791?auto=format&fit=crop&w=700&q=85" alt="Raw chicken meat pieces" onerror="this.onerror=null;this.src='https://placehold.co/700x450/e5e5d5/003b29?text=Chicken+Meat'"></div>
+        <div class="product-content"><h3>Chicken Meat</h3><div class="malayalam">ചിക്കൻ മീറ്റ്</div><div class="price">Price on enquiry</div><div class="product-buttons"><button class="btn green details-btn" data-id="meat">Details</button><button class="btn yellow add-btn" data-id="meat">🛒 Add to Cart</button></div></div>
+      </article>
+
+      <article class="product" data-name="skinless chicken സ്കിൻലെസ് ചിക്കൻ">
+        <div class="product-image-wrap"><img loading="lazy" src="https://images.unsplash.com/photo-1587593810167-a84920ea0781?auto=format&fit=crop&w=700&q=85" alt="Skinless raw chicken" onerror="this.onerror=null;this.src='https://placehold.co/700x450/e5e5d5/003b29?text=Skinless+Chicken'"></div>
+        <div class="product-content"><h3>Skinless Chicken</h3><div class="malayalam">സ്കിൻലെസ് ചിക്കൻ</div><div class="price">Price on enquiry</div><div class="product-buttons"><button class="btn green details-btn" data-id="skinless">Details</button><button class="btn yellow add-btn" data-id="skinless">🛒 Add to Cart</button></div></div>
+      </article>
+
+      <article class="product" data-name="duck താറാവ്">
+        <div class="product-image-wrap"><img loading="lazy" src="image/duck.jpeg" alt="Duck bird" onerror="this.onerror=null;this.src='https://placehold.co/700x450/e5e5d5/003b29?text=Duck'"></div>
+        <div class="product-content"><h3>Duck</h3><div class="malayalam">താറാവ്</div><div class="price unavailable">Unavailable Today</div><div class="product-buttons"><button class="btn green details-btn" data-id="duck">Details</button><button class="btn" disabled>Unavailable</button></div></div>
+      </article>
+
+      <article class="product" data-name="quail കാട">
+        <div class="product-image-wrap"><img loading="lazy" src="image/quil.jpeg" alt="Quail bird" onerror="this.onerror=null;this.src='https://placehold.co/700x450/e5e5d5/003b29?text=Quail'"></div>
+        <div class="product-content"><h3>Quail</h3><div class="malayalam">കാട</div><div class="price">Price on enquiry</div><div class="product-buttons"><button class="btn green details-btn" data-id="quail">Details</button><button class="btn yellow add-btn" data-id="quail">🛒 Add to Cart</button></div></div>
+      </article>
+    </div>
+
+    <div class="detail-panel" id="detailPanel">
+      <img id="detailImage" alt="Selected product">
+      <div>
+        <button class="close-detail" id="closeDetail">✕</button>
+        <small>MEATS DETAILS</small><h2 id="detailName"></h2>
+        <p id="detailDescription"></p>
+        <p><strong>Price:</strong> Confirm with shop.</p>
+        <a id="detailWhatsApp" class="btn yellow" target="_blank" rel="noopener">Ask on WhatsApp</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="bulk">
+  <div class="container bulk-card">
+    <img loading="lazy" src="https://images.unsplash.com/photo-1607623814075-e51df1bdc82f?auto=format&fit=crop&w=900&q=90" alt="Meat preparation" onerror="this.onerror=null;this.src='https://placehold.co/900x600/123c29/ffffff?text=Bulk+Orders'">
+    <div class="bulk-copy">
+      <span class="tag">WEDDING & EVENT ORDERS</span>
+      <h2>Bulk Chicken Orders</h2>
+      <p>For weddings, parties and large events. Orders of 15 kg or more can enquire about wholesale rates. Confirm price and availability with the shop.</p>
+      <a class="btn yellow" href="https://wa.me/917736224403?text=Hello%2C%20I%20want%20to%20enquire%20about%20a%20bulk%20chicken%20order." target="_blank" rel="noopener">WhatsApp Enquiry</a>
+    </div>
+  </div>
+</section>
+
+<section id="location">
+  <div class="container info-grid">
+    <div class="info-card">
+      <h3>📍 Shop Location</h3>
+      <strong>Madheena Chicken</strong>
+      <p>Pattambi Fish Market, Pattambi, Kerala</p>
+      <p>Shop: <a href="tel:7736224403">7736224403</a></p>
+      <a class="btn green" href="https://www.google.com/maps/search/?api=1&query=Pattambi+Fish+Market+Pattambi+Kerala" target="_blank" rel="noopener">Open Google Maps</a>
+    </div>
+    <div class="info-card">
+      <h3>Map</h3>
+      <iframe class="map" title="Pattambi Fish Market map" loading="lazy" src="https://maps.google.com/maps?q=Pattambi%20Fish%20Market%2C%20Pattambi%2C%20Kerala&output=embed"></iframe>
+    </div>
+    <div class="info-card" id="jobs">
+      <h3>Job Vacancies</h3>
+      <p>Interested in working with us? Contact the shop to enquire about current vacancies.</p>
+      <a class="btn green" href="https://wa.me/917736224403?text=Hello%2C%20I%20would%20like%20to%20ask%20about%20job%20vacancies." target="_blank" rel="noopener">Ask About Jobs</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="container footer-row">
+    <div class="brand">
+      <span class="brand-icon">🐓</span>
+      <span class="brand-name">MADHEENA<br><span>CHICKEN</span><small>FRESH · QUALITY · TRUST</small></span>
+    </div>
+    <small>Shop: <a href="tel:7736224403">7736224403</a><br>Pattambi Fish Market, Pattambi, Kerala</small>
+    <small>© <span id="year"></span> Madheena Chicken.<br>All rights reserved.</small>
+  </div>
+</footer>
+
+<a class="floating-whatsapp" href="https://wa.me/917736224403" target="_blank" rel="noopener" aria-label="WhatsApp">◉</a>
+
+<aside class="cart-panel" id="cartPanel">
+  <button class="btn light-btn" id="closeCart">Close ✕</button>
+  <h2>Your Cart</h2>
+  <div id="cartItems"></div>
+  <p id="emptyCart">Your cart is empty.</p>
+  <p><small>Final price and quantity must be confirmed by the shop.</small></p>
+  <button class="btn yellow" id="checkout">Send Enquiry on WhatsApp</button>
+  <button class="btn light-btn" id="clearCart">Clear Cart</button>
+</aside>
+<div class="toast" id="toast"></div>
+
+<script>
+const SHOP_PHONE = "917736224403";
+const products = {
+  country: {name:"Country Chicken / നാടൻ കോഴി",available:true},
+  broiler: {name:"Broiler Chicken / ബ്രോയിലർ ചിക്കൻ",available:true},
+  spring: {name:"Spring Chicken / സ്പ്രിങ് ചിക്കൻ",available:true},
+  layer: {name:"Layer Chicken / ലെയർ കോഴി",available:true},
+  meat: {name:"Chicken Meat / ചിക്കൻ മീറ്റ്",available:true},
+  skinless: {name:"Skinless Chicken / സ്കിൻലെസ് ചിക്കൻ",available:true},
+  duck: {name:"Duck / താറാവ്",available:false},
+  quail: {name:"Quail / കാട",available:true}
+};
+const cart = {};
+const $ = selector => document.querySelector(selector);
+
+function toast(message) {
+  const box = $("#toast");
+  box.textContent = message;
+  box.classList.add("show");
+  clearTimeout(toast.timer);
+  toast.timer = setTimeout(() => box.classList.remove("show"), 2300);
+}
+
+$("#menuToggle").addEventListener("click", () => {
+  $("#menuPanel").classList.toggle("open");
+});
+document.querySelectorAll("#menuPanel a").forEach(link => {
+  link.addEventListener("click", () => $("#menuPanel").classList.remove("open"));
+});
+
+$("#search").addEventListener("input", event => {
+  const query = event.target.value.toLowerCase().trim();
+  document.querySelectorAll(".product").forEach(card => {
+    card.hidden = !card.dataset.name.toLowerCase().includes(query);
+  });
+});
+
+function updateCart() {
+  const count = Object.values(cart).reduce((sum, qty) => sum + qty, 0);
+  $("#cartCount").textContent = count;
+  $("#cartItems").replaceChildren();
+  const entries = Object.entries(cart);
+  $("#emptyCart").hidden = entries.length > 0;
+
+  entries.forEach(([id, qty]) => {
+    const row = document.createElement("div");
+    row.className = "cart-row";
+    const label = document.createElement("span");
+    label.textContent = products[id].name + " × " + qty;
+    const remove = document.createElement("button");
+    remove.textContent = "Remove";
+    remove.addEventListener("click", () => {
+      delete cart[id];
+      updateCart();
+    });
+    row.append(label, remove);
+    $("#cartItems").append(row);
+  });
+}
+
+document.querySelectorAll(".add-btn").forEach(button => {
+  button.addEventListener("click", () => {
+    const id = button.dataset.id;
+    if (!products[id].available) {
+      toast("This product is currently unavailable.");
+      return;
+    }
+    cart[id] = (cart[id] || 0) + 1;
+    updateCart();
+    toast("Added to cart!");
+  });
+});
+
+function showDetails(id) {
+  const card = document.querySelector('.details-btn[data-id="' + id + '"]').closest(".product");
+  $("#detailImage").src = card.querySelector("img").src;
+  $("#detailName").textContent = products[id].name;
+  $("#detailDescription").textContent = products[id].available
+    ? "Fresh poultry product. Please confirm today's availability, price and cutting options directly with the shop."
+    : "This product is currently unavailable. Contact the shop to ask about future availability.";
+  $("#detailWhatsApp").href = "https://wa.me/" + SHOP_PHONE +
+    "?text=" + encodeURIComponent("Hello, please confirm price and availability for " + products[id].name);
+  $("#detailPanel").classList.add("open");
+  $("#detailPanel").scrollIntoView({behavior:"smooth",block:"center"});
+}
+
+document.querySelectorAll(".details-btn").forEach(button => {
+  button.addEventListener("click", () => showDetails(button.dataset.id));
+});
+document.querySelectorAll(".product img").forEach(img => {
+  img.addEventListener("click", () => {
+    const button = img.closest(".product").querySelector(".details-btn");
+    showDetails(button.dataset.id);
+  });
+});
+$("#closeDetail").addEventListener("click", () => $("#detailPanel").classList.remove("open"));
+
+$("#cartToggle").addEventListener("click", () => $("#cartPanel").classList.toggle("open"));
+$("#closeCart").addEventListener("click", () => $("#cartPanel").classList.remove("open"));
+$("#clearCart").addEventListener("click", () => {
+  Object.keys(cart).forEach(key => delete cart[key]);
+  updateCart();
+});
+
+$("#checkout").addEventListener("click", () => {
+  const entries = Object.entries(cart);
+  if (!entries.length) {
+    toast("Please add a product to your cart first.");
+    return;
+  }
+  let message = "Hello Madheena Chicken! Please confirm price and availability:\n";
+  entries.forEach(([id, qty]) => {
+    message += products[id].name + " x " + qty + "\n";
+  });
+  message += "Please confirm the final price and delivery availability.";
+  window.open("https://wa.me/" + SHOP_PHONE + "?text=" + encodeURIComponent(message), "_blank", "noopener");
+});
+
+$("#year").textContent = new Date().getFullYear();
+updateCart();
+</script>
+</body>
+</html>
+```
